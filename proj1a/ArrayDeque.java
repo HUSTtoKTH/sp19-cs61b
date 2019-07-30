@@ -96,9 +96,9 @@ public class ArrayDeque<T> {
             firstPointer = addPointer(firstPointer);
         }
         size--;
-        if(8*size < items.length && size !=0){
-            resize(items.length/8);
-        }
+//        if(8*size < items.length && size !=0){
+//            resize(items.length/8);
+//        }
         return firstItem;
     }
 ////    : Removes and returns the item at the back of the deque. If no such item exists, returns null.
