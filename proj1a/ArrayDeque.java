@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
 //    : Adds an item of type T to the front of the deque.
     public void addFirst(T item){
         if(size == items.length){
-            resize(2);
+            resize(2*size);
         }
         if(size != 0){
             firstPointer = minusPointer(firstPointer);
