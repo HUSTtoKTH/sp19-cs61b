@@ -1,12 +1,18 @@
 public class test {
     public static void main(String[] args) {
-        ArrayDeque<Integer> test = new ArrayDeque<>();
-        test.addFirst(0);
-        test.addFirst(1);
-        test.get(0);
-        test.get(0);
-        test.get(1);
-
+//        ArrayDeque<Integer> test = new ArrayDeque<>();
+//        test.addFirst(0);
+//        test.addFirst(1);
+//        test.get(0);
+//        test.get(0);
+//        test.get(1);
+        LinkedListDeque<Integer> test = new LinkedListDeque<>();
+        test.addLast(0);
+        test.removeLast();
+        test.addLast(2);
+        test.addLast(3);
+        test.removeFirst();
+        test.removeLast();
 //        test.addFirst(0);
 //        test.removeLast();
 //        test.addFirst(6);
