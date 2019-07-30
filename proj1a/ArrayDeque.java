@@ -1,17 +1,17 @@
-public class ArrayDeque<Item> {
-    private Item[] items;
+public class ArrayDeque<T> {
+    private T[] items;
     private int size;
     private int lastPointer;
     private int firstPointer;
 
     public ArrayDeque(){
-        items =(Item[]) new Object[8];
+        items =(T[]) new Object[8];
         size = 0;
         firstPointer = 0;
         lastPointer = 0;
     }
 //    : Adds an item of type T to the front of the deque.
-    public void addFirst(Item item){
+    public void addFirst(T item){
         if(size == items.length){
             resize(2*size);
         }
@@ -22,7 +22,7 @@ public class ArrayDeque<Item> {
         size++;
     }
     private void resize(int capacity){
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         if(firstPointer == 0){
             System.arraycopy(items,0,a,0,size);
         }
@@ -50,7 +50,7 @@ public class ArrayDeque<Item> {
         }
     }
 ////    : Adds an item of type T to the back of the deque.
-    public void addLast(Item item){
+    public void addLast(T item){
         if(size == items.length){
             resize(2*size);
         }
@@ -86,27 +86,27 @@ public class ArrayDeque<Item> {
         }
     }
 ////    : Removes and returns the item at the front of the deque. If no such item exists, returns null.
-    public Item removeFirst(){
+    public T removeFirst(){
         if(size == 0){
             return null;
         }
-        Item firstItem  = items[firstPointer];
+        T firstItem  = items[firstPointer];
         firstPointer = addPointer(firstPointer);
         size--;
         return firstItem;
     }
 ////    : Removes and returns the item at the back of the deque. If no such item exists, returns null.
-    public Item removeLast(){
+    public T removeLast(){
         if (size == 0){
             return null;
         }
-        Item lastItem  = items[lastPointer];
+        T lastItem  = items[lastPointer];
         lastPointer = minusPointer(lastPointer);
         size--;
         return lastItem;
     }
 ////    : Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!
-    public Item get(int index){
+    public T get(int index){
         int relativeIndex = firstPointer+index;
         if(relativeIndex >= items.length){
             relativeIndex = relativeIndex - size;
@@ -114,13 +114,13 @@ public class ArrayDeque<Item> {
         return items[relativeIndex];
     }
     public ArrayDeque(ArrayDeque other){
-        items =(Item[]) new Object[8];
+        items =(T[]) new Object[8];
         size = 0;
         firstPointer = 0;
         lastPointer = 0;
         int otherSize = other.size();
         for(int i = 0; i<otherSize;i++){
-            addLast((Item)other.removeFirst());
+            addLast((T)other.removeFirst());
         }
 
     }
