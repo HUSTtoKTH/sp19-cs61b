@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
 //    : Adds an item of type T to the front of the deque.
     public void addFirst(T item){
         if(size == items.length){
-            resize(2*size);
+            resize(2);
         }
         if(size != 0){
             firstPointer = minusPointer(firstPointer);
@@ -91,8 +91,14 @@ public class ArrayDeque<T> {
             return null;
         }
         T firstItem  = items[firstPointer];
-        firstPointer = addPointer(firstPointer);
+        items[firstPointer] = null;
+        if(size != 1){
+            firstPointer = addPointer(firstPointer);
+        }
         size--;
+        if(8*size < items.length && size !=0){
+            resize(items.length/8);
+        }
         return firstItem;
     }
 ////    : Removes and returns the item at the back of the deque. If no such item exists, returns null.
@@ -101,27 +107,35 @@ public class ArrayDeque<T> {
             return null;
         }
         T lastItem  = items[lastPointer];
-        lastPointer = minusPointer(lastPointer);
+        items[lastPointer] = null;
+        if(size != 1){
+            lastPointer = minusPointer(lastPointer);
+        }
         size--;
+        if(8*size < items.length && size !=0){
+            resize(items.length/8);
+        }
         return lastItem;
     }
 ////    : Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!
     public T get(int index){
         int relativeIndex = firstPointer+index;
         if(relativeIndex >= items.length){
-            relativeIndex = relativeIndex - size;
+            relativeIndex = relativeIndex - items.length;
         }
         return items[relativeIndex];
     }
-    public ArrayDeque(ArrayDeque other){
-        items =(T[]) new Object[8];
-        size = 0;
-        firstPointer = 0;
-        lastPointer = 0;
-        int otherSize = other.size();
-        for(int i = 0; i<otherSize;i++){
-            addLast((T)other.removeFirst());
-        }
 
-    }
+
+//    private ArrayDeque(ArrayDeque other){
+//        items =(T[]) new Object[8];
+//        size = 0;
+//        firstPointer = 0;
+//        lastPointer = 0;
+//        int otherSize = other.size();
+//        for(int i = 0; i<otherSize;i++){
+//            addLast((T)other.removeFirst());
+//        }
+//
+//    }
 }

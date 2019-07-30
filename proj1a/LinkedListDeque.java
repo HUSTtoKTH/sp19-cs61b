@@ -66,14 +66,18 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel.next.next;
         sentinel.next.next.previous = sentinel;
         size--;
-        return sentinel.next.item;
+        return firstItem;
     }
 //  Removes and returns the item at the back of the deque. If no such item exists, returns null.
     public T removeLast(){
+        if(size == 0){
+            return null;
+        }
+        T lastItem = sentinel.previous.item;
         sentinel.previous = sentinel.previous.previous;
         sentinel.previous.previous.next = sentinel;
         size--;
-        return sentinel.previous.item;
+        return lastItem;
     }
 //    Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!
     public T get(int index){
@@ -89,14 +93,14 @@ public class LinkedListDeque<T> {
         return pointer.item;
     }
 //: Creates a deep copy of other
-    public LinkedListDeque(LinkedListDeque other){
-        sentinel = new theNode(null,sentinel,sentinel);
-        size = 0;
-        for(int i=0; i<other.size();i++){
-            addLast((T)other.get(i));
-        }
-
-    }
+//    public LinkedListDeque(LinkedListDeque other){
+//        sentinel = new theNode(null,sentinel,sentinel);
+//        size = 0;
+//        for(int i=0; i<other.size();i++){
+//            addLast((T)other.get(i));
+//        }
+//
+//    }
 //     Systemame as get, but uses recursion.
     public T getRecursive(int index){
         if(index<0 || index>size ){
@@ -105,7 +109,7 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(sentinel.next, index);
     }
 
-    public T getRecursiveHelper(theNode current, int index){
+    private T getRecursiveHelper(theNode current, int index){
         if(index == 0){
             return current.item;
         }
