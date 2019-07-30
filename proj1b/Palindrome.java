@@ -14,7 +14,7 @@ public class Palindrome {
         }
         return isPalindromeHelper(charOfWord);
     }
-    public boolean isPalindromeHelper(Deque<Character> d){
+    private boolean isPalindromeHelper(Deque<Character> d){
         if(d.size() == 0 ||d.size() == 1){
             return true;
         }
@@ -30,7 +30,7 @@ public class Palindrome {
         }
         return isPalindromeOffByOne(charOfWord,cc);
     }
-    public boolean isPalindromeOffByOne(Deque<Character> d,CharacterComparator cc){
+    private boolean isPalindromeOffByOne(Deque<Character> d,CharacterComparator cc){
         if(d.size() == 0 ||d.size() == 1){
             return true;
         }

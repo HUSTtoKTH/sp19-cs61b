@@ -31,9 +31,9 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("a",new OffByOne()));
         assertTrue(palindrome.isPalindrome("acb",new OffByOne()));
         assertTrue(palindrome.isPalindrome("acdb",new OffByOne()));
-        assertFalse("horse wrong",palindrome.isPalindrome("aa",new OffByOne()));
-        assertFalse("rancor wrong",palindrome.isPalindrome("abcd",new OffByOne()));
-        assertFalse("aaab wrong",palindrome.isPalindrome("az",new OffByOne()));
+        assertFalse(palindrome.isPalindrome("aB",new OffByOne()));
+        assertFalse(palindrome.isPalindrome("abcd",new OffByOne()));
+        assertFalse(palindrome.isPalindrome("az",new OffByOne()));
     }
 
 }
