@@ -17,6 +17,7 @@ public class Percolation {
     private int openNum;
     private boolean[] grids;
     private WeightedQuickUnionUF group;
+    private WeightedQuickUnionUF doubleCheck;
     public Percolation(int N) {
         if (N < 0) {
             throw new java.lang.IllegalArgumentException();
@@ -25,6 +26,7 @@ public class Percolation {
         this.n = N;
         this.n2 = n * n;
         this.group = new WeightedQuickUnionUF(n2 + 2);
+        this.doubleCheck = new WeightedQuickUnionUF(n2 + 1);
         this.grids = new boolean[n2 + 2];
     }
     // open the site (row, col) if it is not open already
@@ -47,22 +49,24 @@ public class Percolation {
         autoUnion(row, col + 1, d);
         if (row == 0) {
             group.union(d, n2);
+            doubleCheck.union(d, n2);
         }
         if (row == n - 1) {
             group.union(d, n2 + 1);
         }
     }
     private void autoUnion(int row, int col, int d) {
-        if (row >= n || row < 0 || col >= n || col <0) {
+        if (row >= n || row < 0 || col >= n || col < 0) {
             return;
         }
         int near = row * n + col;
         if (isOpen(row, col)) {
             group.union(d, near);
+            doubleCheck.union(d, near);
         }
     }
     // is the site (row, col) open?
-    public boolean isOpen(int row, int col){
+    public boolean isOpen(int row, int col) {
         if (row >= n || row < 0 || col >= n || col < 0) {
             throw new java.lang.IndexOutOfBoundsException();
         }
@@ -75,7 +79,7 @@ public class Percolation {
             throw new java.lang.IndexOutOfBoundsException();
         }
         int d = row * n + col;
-        return group.connected(d, n2);
+        return doubleCheck.connected(d, n2);
     }
 //    // number of open sites
     public int numberOfOpenSites() {
