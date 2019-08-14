@@ -42,12 +42,12 @@ public class TestComplexOomage {
     @Test
     public void testWithDeadlyParams() {
         List<Oomage> deadlyList = new ArrayList<>();
-        List<Integer> param1 = new ArrayList<>(Arrays.asList(1,0,0,0,0,0,0,0,0));
-        List<Integer> param2 = new ArrayList<>(Arrays.asList(2,0,0,0,0,0,0,0,0));
-        List<Integer> param3 = new ArrayList<>(Arrays.asList(3,0,0,0,0,0,0,0,0));
-        List<Integer> param4 = new ArrayList<>(Arrays.asList(4,0,0,0,0,0,0,0,0));
-        List<Integer> param5 = new ArrayList<>(Arrays.asList(5,0,0,0,0,0,0,0,0));
-        List<Integer> param6 = new ArrayList<>(Arrays.asList(6,0,0,0,0,0,0,0,0));
+        List<Integer> param1 = new ArrayList<>(Arrays.asList(1,0,0,0));
+        List<Integer> param2 = new ArrayList<>(Arrays.asList(2,0,0,0));
+        List<Integer> param3 = new ArrayList<>(Arrays.asList(3,0,0,0));
+        List<Integer> param4 = new ArrayList<>(Arrays.asList(4,0,0,0));
+        List<Integer> param5 = new ArrayList<>(Arrays.asList(5,0,0,0));
+        List<Integer> param6 = new ArrayList<>(Arrays.asList(6,0,0,0));
 
         // Your code here.
         deadlyList.add(new ComplexOomage(param1));
