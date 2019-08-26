@@ -251,13 +251,13 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private void validateSinkSwimArg(int index) {
         if (index < 1) {
-            throw new IllegalArgumentException("Cannot sink or swim nodes with index 0 or less");
+            return;
         }
         if (index > size) {
-            throw new IllegalArgumentException("Cannot sink or swim nodes with index greater than current size.");
+            return;
         }
         if (contents[index] == null) {
-            throw new IllegalArgumentException("Cannot sink or swim a null node.");
+            return;
         }
     }
 
