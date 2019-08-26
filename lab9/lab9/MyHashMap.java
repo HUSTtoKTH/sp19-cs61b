@@ -9,7 +9,7 @@ import java.util.Set;
  *
  *  @author Your name here
  */
-public class MyHashMap<K, V> implements Map61B<K, V> {
+public class MyHashMap<K, V> implements Map61B<K, V>, Iterable<K>{
 
     private static final int DEFAULT_SIZE = 16;
     private static final double MAX_LF = 0.75;
@@ -53,19 +53,42 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        int keyHash  = hash(key);
+        int entry  = keyHash % buckets.length;
+        return buckets[entry].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if(loadFactor() >= MAX_LF){
+            resize(2 * buckets.length);
+        }
+        int keyHash  = hash(key);
+        int entry  = keyHash % buckets.length;
+        if(!buckets[entry].containsKey(key)){
+            buckets[entry].put(key, value);
+            size++;
+        }else {
+            buckets[entry].remove(key);
+            buckets[entry].put(key, value);
+        }
+    }
+    private void resize(int capacity){
+        ArrayMap<K, V>[] newBuckets = new ArrayMap[capacity];
+        for(int i = 0; i < capacity; i++){
+            newBuckets[i] = new ArrayMap<>();
+        }
+        for(int i = 0; i < size(); i++){
+            newBuckets[i] = this.buckets[i];
+        }
+        buckets = newBuckets;
     }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
