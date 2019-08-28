@@ -13,6 +13,7 @@ public class TrivialMazeExplorer extends MazeExplorer {
     public void solve() {
         for (int i = 0; i < maze.V(); i += 1) {
             distTo[i] = i;
+            edgeTo[i] = i+1;
             marked[i] = true;
             announce();
         }
