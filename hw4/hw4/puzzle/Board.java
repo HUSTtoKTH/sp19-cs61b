@@ -60,9 +60,8 @@ public class Board implements WorldState{
         int wrongPosition = 0;
         for(int i = 0; i < size(); i++){
             for(int j = 0; j < size(); j++){
-                if( i != (size()-1) && j != (size()-1)){
-                    if(cowmoo[i][j] != (i * size() + j + 1))wrongPosition++;
-                }
+                if( i == (size()-1) && j == (size()-1))continue;
+                if(cowmoo[i][j] != (i * size() + j + 1))wrongPosition++;
             }
         }
         return wrongPosition;
