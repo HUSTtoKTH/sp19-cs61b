@@ -58,12 +58,10 @@ public class Board implements WorldState{
     }
     public int hamming(){
         int wrongPosition = 0;
-        int temp = 0;
         for(int i = 0; i < size(); i++){
             for(int j = 0; j < size(); j++){
                 if( i != (size()-1) && j != (size()-1)){
-                    temp++;
-                    if(cowmoo[i][j] != temp)wrongPosition++;
+                    if(cowmoo[i][j] != (i * size() + j + 1))wrongPosition++;
                 }
             }
         }

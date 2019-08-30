@@ -55,16 +55,15 @@ public class Solver {
             }
         }
         System.out.println(flag);
-
         SearchNode trackPath =  q.min();
-        while (trackPath.previous != null){
+        while (trackPath != null){
             path.addFirst(trackPath.w);
             trackPath = trackPath.previous;
         }
 
     }
     public int moves(){
-        return path.size();
+        return path.size() - 1;
     }
     public Iterable<WorldState> solution(){
         return path;
