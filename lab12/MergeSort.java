@@ -92,22 +92,20 @@ public class MergeSort {
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
-        if (items == null) return null;
+
         if (items.size() <= 1) return items;
         if (items.size() == 2) {
             Queue<Queue<Item>> queues = makeSingleItemQueues(items);
             return mergeSortedQueues(queues.dequeue(), queues.dequeue());
         }
-        if (items.size() > 2) {
-            int end = items.size();
-            int mid = end / 2;
-            Queue<Item> leftQueue = new Queue<>();
-            Queue<Item> rightQueue = new Queue<>();
-            for (int i = 0; i < mid; i++) leftQueue.enqueue(items.dequeue());
-            for (int i = mid; i < end; i++) rightQueue.enqueue(items.dequeue());
-            return mergeSortedQueues(mergeSort(leftQueue), mergeSort(rightQueue));
-        }
-        return null;
+        int end = items.size();
+        int mid = end / 2;
+        Queue<Item> leftQueue = new Queue<>();
+        Queue<Item> rightQueue = new Queue<>();
+        for (int i = 0; i < mid; i++) leftQueue.enqueue(items.dequeue());
+        for (int i = mid; i < end; i++) rightQueue.enqueue(items.dequeue());
+        return mergeSortedQueues(mergeSort(leftQueue), mergeSort(rightQueue));
+
     }
 }
 
